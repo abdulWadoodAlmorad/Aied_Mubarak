@@ -1,78 +1,62 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Popppins' , sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #000;
 }
-.wrapper{
+.wrapper {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
-@media (max-width: 767px) {
-    .wrapper{
-      flex-direction:column-reverse;
-      text-align: center;
-
-    }
-  }
-.wrapper .first-text{
+.wrapper .first-text {
     font-size: 40px;
     color: #fff;
-    float: left;
-
+    margin-bottom: 20px;
 }
-.wrapper .sec-text{
-    height: 100px;
-    line-height: 100px;
+.wrapper .sec-text {
+    position: relative;
+    width: 100%;
+    height: 60px; /* ارتفاع كافٍ لعرض جملة واحدة فقط */
     overflow: hidden;
 }
-.sec-text li{
-    position: relative;
-    top: 0;
-    font-size: 40px;
+.sec-text li {
+    font-size: 30px;
     color: #0ef;
     list-style: none;
-    padding: 0 20px;
-    text-shadow:0 0 10px #0ef;
-    animation: slide 12s steps(4) infinite, colorful 6s infinite;
-    text-align: right;
-
+    text-shadow: 0 0 10px #0ef;
+    display: none; /* إخفاء جميع العبارات مبدئيًا */
 }
-@keyframes slide{
-    100%{
-        top: -400px;
+
+/* تنشيط كل عبارة لفترة قبل الانتقال للتالية */
+.sec-text li.active {
+    display: block;
+    animation: fadeInOut 6s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@media (max-width: 767px) {
+    .wrapper .first-text {
+        font-size: 30px;
     }
-}
-@keyframes colorful{
-    100%{
-        filter: hue-rotate(360deg);
+    .sec-text {
+        height: 60px;
     }
-}
-.sec-text li span{
-    position: relative;
-
-}
-.sec-text li span::before{
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 541px;
-    height: 40px;
-    /* background-color: red; */
-    border-right: 2px solid #0ef;
-    animation: typing 1.5s steps(10) infinite alternate;
-}
-@keyframes typing {
-    100%{
-        right: 100%;
-        margin: -35px 35px;
-
+    .sec-text li {
+        font-size: 24px;
     }
-
 }
